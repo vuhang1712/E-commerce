@@ -1,0 +1,25 @@
+@import "../../assets/styles/_variables.scss";
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $border-color;
+    margin-top: 10px;
+}
+
+.btn {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    outline: none;
+}
+
+.btn.active {
+    font-weight: $fw-bold;
+}
+
+.btn:focus {
+    box-shadow: none;
+}

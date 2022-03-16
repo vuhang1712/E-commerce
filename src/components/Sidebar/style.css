@@ -1,0 +1,17 @@
+.sidebar {
+    position: fixed;
+    overflow-y: auto;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 230px;
+    padding: 20px;
+    border-right: 1px solid #EEE;
+    background: #FFFFFF;
+}
+
+h1 {
+    font-size: 16px;
+    color: #888;
+    margin: 0 0 8px;
+}
