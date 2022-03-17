@@ -3,44 +3,22 @@ import "./style.scss";
 function Pagination(props) {
   const pageCount = props.pageCount;
   const page = props.page;
+  const left = page - 3;
+  const right = page + 3;
 
   const getPages = () => {
-    if (pageCount <= 7) return [...Array(pageCount + 1).keys()].slice(1);
-
-    const pages = [1, 2, 3, 4, 5, 6, 7];
-    for (let i = 8; i <= pageCount; i++) {
-      if (isPage(i)) {
+    const pages = [];
+    for (let i = 1; i <= pageCount; i++) {
+      if (i >= left && (i <= right || i <= 7)) {
         pages.push(i);
-        pages.shift();
       }
     }
     return pages;
   };
 
-  function isPage(i) {
-    let firstElement = i === page - 3;
-    let secondElement = i === page - 2;
-    let thirdElement = i === page - 1;
-    let fourthElement = i === page;
-    let fifthElement = i === page + 1;
-    let sixthElement = i === page + 2;
-    let seventhElement = i === page + 3;
-
-    if (
-      firstElement ||
-      secondElement ||
-      thirdElement ||
-      fourthElement ||
-      fifthElement ||
-      sixthElement ||
-      seventhElement
-    )
-      return true;
-  }
-
   return (
     <section id="pagination">
-      {pageCount ? (
+      {pageCount && (
         <ul className="pagination">
           <li className="page-item">
             <button
@@ -73,7 +51,7 @@ function Pagination(props) {
             </button>
           </li>
         </ul>
-      ) : null}
+      )}
     </section>
   );
 }

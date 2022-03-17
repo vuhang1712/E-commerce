@@ -1,0 +1,35 @@
+@import "../../../assets/styles/_variables.scss";
+
+.product-item {
+    border: 1px solid $border-color;
+    padding: 0px 20px 20px;
+}
+
+.product {
+    &__image {
+        display: block;
+        margin: 10px auto;
+        height: 150px;
+        max-width: 100%;
+    }
+
+    &__name {
+        font-size: 1rem;
+        font-weight: $fw-bold;
+        color: $title-color;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    &__price {
+        font-size: 1.2rem;
+        font-weight: $fw-bold;
+        color: $title-color;
+        float: right;
+    }
+
+    &__rating {
+        color: $rating-color;
+        font-size: 0.8rem;
+    }
+}
