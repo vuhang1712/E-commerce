@@ -4,10 +4,12 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../src/assets/styles/style.scss';
 import App from './App';
-
+import Provider from './store/Provider';
 
 ReactDOM.render(
-  <App />,
+  <Provider>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
 

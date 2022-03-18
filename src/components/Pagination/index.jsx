@@ -1,8 +1,12 @@
 import "./style.scss";
+import Context from "../../store/Context";
+import React, { useContext } from "react";
 
-function Pagination(props) {
-  const pageCount = props.pageCount;
-  const page = props.page;
+function Pagination() {
+  const [state, dispatch] = useContext(Context);
+
+  const pageCount = state.totalCount;
+  const page = state.page;
   const left = page - 3;
   const right = page + 3;
 
@@ -23,7 +27,7 @@ function Pagination(props) {
           <li className="page-item">
             <button
               className="btn btn-link"
-              onClick={() => props.setPage(page - 1)}
+              onClick={() => dispatch({ type: "PAGINATE", payload: {page: page - 1} })}
               disabled={page === 1}
             >
               <i className="fa fa-angle-left fa-2x fw-light p-2"></i>
@@ -34,7 +38,7 @@ function Pagination(props) {
             <li className="page-item">
               <button
                 className={page === item ? "btn active" : "btn btn-link"}
-                onClick={() => props.setPage(item)}
+                onClick={() => dispatch({ type: "PAGINATE", payload: {page: item} })}
               >
                 {item}
               </button>
@@ -43,7 +47,7 @@ function Pagination(props) {
           <li className="page-item">
             <button
               className="btn btn-link"
-              onClick={() => props.setPage(page + 1)}
+              onClick={() => dispatch({ type: "PAGINATE", payload: {page: page + 1} })}
               disabled={page === pageCount}
             >
               Next page
