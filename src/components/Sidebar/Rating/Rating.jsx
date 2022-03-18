@@ -10,7 +10,6 @@ function FilterByRating() {
     <li>
       <button
         className="btn"
-        data-rating={5 - index}
         onClick={() => dispatch({type: "RATING", payload: { rating: 5- index }})}
       >
         {Rating(5 - index)}

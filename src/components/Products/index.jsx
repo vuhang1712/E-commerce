@@ -17,6 +17,7 @@ function Product() {
           params: {
             _limit: state.limit,
             _page: state.page,
+            type_like: state.filterApplied.type,
             rating: state.filterApplied.rating,
           },
         });
@@ -26,23 +27,25 @@ function Product() {
       }
     };
     fetchData();
-  }, [state.page, state.filterApplied.rating]);
-
-  const productItem = state.products.map((item) => (
-    <ProductItem
-      name={item.name}
-      image={item.image}
-      rating={item.rating}
-      price={item.price}
-    /> 
-  ));
+  }, [state.page, state.filterApplied.type, state.filterApplied.rating]);
 
   return (
     <main className="content">
       <div className="product-list">
-        {state.isLoading ? <div>Loading...</div> : productItem}
+        {state.isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          state.products.map((item) => (
+            <ProductItem
+              name={item.name}
+              image={item.image}
+              rating={item.rating}
+              price={item.price}
+            />
+          ))
+        )}
       </div>
-      {<Pagination />}
+      <Pagination />
     </main>
   );
 }

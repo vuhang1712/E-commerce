@@ -2,16 +2,20 @@ const initState = {
   products: [],
   limit: 16,
   page: 1,
-  filterApplied: {},
+  filterApplied: {
+    type: []
+  },
 };
 
 function reducer(state, action) {
+  console.log(action);
   switch (action.type) {
     case "FETCH_INIT":
       return {
         ...state,
         isLoading: true,
       };
+
     case "FETCH_SUCCESS":
       return {
         ...state,
@@ -19,11 +23,21 @@ function reducer(state, action) {
         products: action.payload.data,
         totalCount: action.payload.headers["x-total-count"],
       };
+
     case "PAGINATE":
       return {
         ...state,
         page: action.payload.page,
       };
+
+    case "TYPE":
+      return {
+        ...state,
+        filterApplied: {
+          type: action.payload.type,
+        },
+      };
+
     case "RATING":
       return {
         ...state,
