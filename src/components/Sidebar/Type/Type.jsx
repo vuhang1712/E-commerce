@@ -12,30 +12,30 @@ function FilterByType() {
     "Connectivity",
   ];
 
-  const listItem = types.map((item) => (
-    <div class="form-check">
+  const listItem = types.map((type, index) => (
+    <div key={index} class="form-check">
       <input
         class="form-check-input"
-        id={item}
+        id={type}
         type="checkbox"
-        value={item}
+        value={type}
         onChange={(e) => {
           e.target.checked
             ? dispatch({
                 type: "TYPE",
-                payload: { type: [...state.filterApplied.type, item] },
+                payload: { type: [...state.filterApplied.type, type] },
               })
             : dispatch({
                 type: "TYPE",
                 payload: {
                   type: state.filterApplied.type.filter(
-                    (type) => type !== item
-                  )
-                }
+                    (item) => item !== type
+                  ),
+                },
               });
         }}
       />
-      <label for={item}>{item}</label>
+      <label htmlFor={type}>{type}</label>
     </div>
   ));
 

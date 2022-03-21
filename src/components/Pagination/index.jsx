@@ -34,8 +34,8 @@ function Pagination() {
               Previous page
             </button>
           </li>
-          {getPages().map((item) => (
-            <li className="page-item">
+          {getPages().map((item, index) => (
+            <li key={index} className="page-item">
               <button
                 className={page === item ? "btn active" : "btn btn-link"}
                 onClick={() => dispatch({ type: "PAGINATE", payload: {page: item} })}

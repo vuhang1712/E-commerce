@@ -3,7 +3,9 @@ const initState = {
   limit: 16,
   page: 1,
   filterApplied: {
-    type: []
+    type: [],
+    brand: [],
+    search: '',
   },
 };
 
@@ -34,14 +36,34 @@ function reducer(state, action) {
       return {
         ...state,
         filterApplied: {
+          ...state.filterApplied,
           type: action.payload.type,
         },
       };
+
+    case "BRAND":
+      return {
+        ...state,
+        filterApplied: {
+          ...state.filterApplied,
+          brand: action.payload.brand ,
+        },
+      };
+
+      case "SEARCH":
+        return {
+          ...state,
+          filterApplied: {
+            ...state.filterApplied,
+            search: action.payload.search,
+          },
+        };
 
     case "RATING":
       return {
         ...state,
         filterApplied: {
+          ...state.filterApplied,
           rating: action.payload.rating,
         },
       };

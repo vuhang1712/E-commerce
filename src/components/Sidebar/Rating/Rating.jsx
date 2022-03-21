@@ -5,12 +5,14 @@ import { useContext } from "react";
 
 function FilterByRating() {
   const [state, dispatch] = useContext(Context);
-  
+
   const ratingItem = [...Array(5)].map((_, index) => (
-    <li>
+    <li key={index}>
       <button
         className="btn"
-        onClick={() => dispatch({type: "RATING", payload: { rating: 5- index }})}
+        onClick={() =>
+          dispatch({ type: "RATING", payload: { rating: 5 - index } })
+        }
       >
         {Rating(5 - index)}
       </button>
