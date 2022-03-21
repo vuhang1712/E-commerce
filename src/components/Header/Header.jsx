@@ -10,7 +10,7 @@ function Header() {
     dispatch({
       type: "SEARCH",
       payload: {
-        search: value,
+        search: value.trim(),
       },
     });
   }, 300);
@@ -23,7 +23,7 @@ function Header() {
       <a href="#" className="header__logo">
         amazing
       </a>
-      <div className="input-group">
+      <form className="input-group" onSubmit={(event) => event.preventDefault()}>
         <input
           type="text"
           class="form-control"
@@ -31,11 +31,11 @@ function Header() {
           onChange={(event) => debounced(event.target.value)}
         />
         <span class="input-group-btn">
-          <button className="btn btn-default">
+          <button type="submit" className="btn btn-default">
             <i className="fa fa-search"></i>
           </button>
         </span>
-      </div>
+      </form>
     </header>
   );
 }

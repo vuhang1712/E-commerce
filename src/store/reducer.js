@@ -1,5 +1,6 @@
 const initState = {
   products: [],
+  brands: [],
   limit: 16,
   page: 1,
   filterApplied: {
@@ -58,6 +59,16 @@ function reducer(state, action) {
             search: action.payload.search,
           },
         };
+
+        case "SORT":
+          return {
+            ...state,
+            filterApplied: {
+              ...state.filterApplied,
+              sort: action.payload.sort,
+              order: action.payload.order,
+            },
+          };
 
     case "RATING":
       return {
