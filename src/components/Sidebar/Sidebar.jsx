@@ -1,7 +1,9 @@
-import './style.css';
+import './style.scss';
 import Category from './Category/Category';
 import FilterByRating from './Rating/Rating';
 import FilterByType from './Type/Type';
+import FilterByBrand from './Brand/Brand';
+import FilterByPrice from './Price/Price';
 
 function Sidebar() {
 
@@ -9,8 +11,9 @@ function Sidebar() {
         <aside className="sidebar">
             <Category />
             <FilterByType />
+            <FilterByBrand />
             <FilterByRating />
-
+            <FilterByPrice />
         </aside>
     );
 }
