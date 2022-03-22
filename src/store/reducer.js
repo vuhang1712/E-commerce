@@ -6,7 +6,7 @@ const initState = {
   filterApplied: {
     type: [],
     brand: [],
-    search: '',
+    search: "",
   },
 };
 
@@ -47,28 +47,28 @@ function reducer(state, action) {
         ...state,
         filterApplied: {
           ...state.filterApplied,
-          brand: action.payload.brand ,
+          brand: action.payload.brand,
         },
       };
 
-      case "SEARCH":
-        return {
-          ...state,
-          filterApplied: {
-            ...state.filterApplied,
-            search: action.payload.search,
-          },
-        };
+    case "SEARCH":
+      return {
+        ...state,
+        filterApplied: {
+          ...state.filterApplied,
+          search: action.payload.search,
+        },
+      };
 
-        case "SORT":
-          return {
-            ...state,
-            filterApplied: {
-              ...state.filterApplied,
-              sort: action.payload.sort,
-              order: action.payload.order,
-            },
-          };
+    case "SORT":
+      return {
+        ...state,
+        filterApplied: {
+          ...state.filterApplied,
+          sort: action.payload.sort,
+          order: action.payload.order,
+        },
+      };
 
     case "RATING":
       return {
@@ -76,6 +76,16 @@ function reducer(state, action) {
         filterApplied: {
           ...state.filterApplied,
           rating: action.payload.rating,
+        },
+      };
+
+    case "PRICE":
+      return {
+        ...state,
+        filterApplied: {
+          ...state.filterApplied,
+          minPrice: action.payload.minPrice,
+          maxPrice: action.payload.maxPrice,
         },
       };
 

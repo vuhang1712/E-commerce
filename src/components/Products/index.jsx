@@ -24,6 +24,8 @@ function Product() {
             type_like: state.filterApplied.type,
             brand_like: state.filterApplied.brand,
             rating: state.filterApplied.rating,
+            price_gte: state.filterApplied.minPrice || 0,
+            price_lte: state.filterApplied.maxPrice || Infinity,
           },
         });
         dispatch({ type: "FETCH_SUCCESS", payload: result });
