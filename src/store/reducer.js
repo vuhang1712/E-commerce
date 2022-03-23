@@ -3,6 +3,7 @@ const initState = {
   brands: [],
   limit: 16,
   page: 1,
+  totalCount: 0,
   filterApplied: {
     type: [],
     brand: [],
@@ -11,7 +12,6 @@ const initState = {
 };
 
 function reducer(state, action) {
-  console.log(action);
   switch (action.type) {
     case "FETCH_INIT":
       return {
@@ -31,6 +31,15 @@ function reducer(state, action) {
       return {
         ...state,
         page: action.payload.page,
+      };
+
+    case "CATEGORY":
+      return {
+        ...state,
+        filterApplied: {
+          ...state.filterApplied,
+          category: action.payload.category,
+        },
       };
 
     case "TYPE":

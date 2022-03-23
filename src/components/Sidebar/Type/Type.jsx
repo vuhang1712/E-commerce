@@ -13,9 +13,9 @@ function FilterByType() {
   ];
 
   const listItem = types.map((type, index) => (
-    <div key={index} class="form-check">
+    <div key={index} className="form-check">
       <input
-        class="form-check-input"
+        className="form-check-input"
         id={type}
         type="checkbox"
         value={type}

@@ -130,12 +130,13 @@ function FilterByPrice() {
     <div className="sidebar__item">
       <h1 className="sidebar__title">Prices</h1>
       {itemPriceRange}
-      <form class="form-price" onSubmit={(event) => handleSubmit(event)}>
+      <form className="form-price" onSubmit={(event) => handleSubmit(event)}>
         <span>$</span>
         <input
           name="min-price"
           className="input-price"
           type="number"
+          min="0"
           value={inputMin || ""}
           onChange={(event) => handleChangeMinPrice(event.target.value)}
         />
@@ -145,6 +146,7 @@ function FilterByPrice() {
           name="max-price"
           className="input-price"
           type="number"
+          min="0"
           value={inputMax || ""}
           onChange={(event) => handleChangeMaxPrice(event.target.value)}
         />

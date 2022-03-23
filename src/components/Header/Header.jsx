@@ -26,11 +26,11 @@ function Header() {
       <form className="input-group" onSubmit={(event) => event.preventDefault()}>
         <input
           type="text"
-          class="form-control"
+          className="form-control"
           placeholder="Search a product"
           onChange={(event) => debounced(event.target.value)}
         />
-        <span class="input-group-btn">
+        <span className="input-group-btn">
           <button type="submit" className="btn btn-default">
             <i className="fa fa-search"></i>
           </button>

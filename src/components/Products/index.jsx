@@ -21,6 +21,7 @@ function Product() {
             _sort: state.filterApplied.sort,
             _order: state.filterApplied.order,
             name_like: state.filterApplied.search,
+            categories_like: state.filterApplied.category,
             type_like: state.filterApplied.type,
             brand_like: state.filterApplied.brand,
             rating: state.filterApplied.rating,
@@ -45,7 +46,7 @@ function Product() {
         ) : (
           state.products.map((product) => (
             <ProductItem
-              key={product.id}
+              key={product.objectID}
               {...product}
             />
           ))
@@ -56,4 +57,14 @@ function Product() {
   );
 }
 
+const countProduct = async (key, value) => {
+  const {data} = await axios.get(PRODUCT_API_URL, {
+      params: {
+          [key]: value
+      },
+  })
+  return Promise.resolve(data.length);
+}
+
 export default Product;
+export { countProduct };

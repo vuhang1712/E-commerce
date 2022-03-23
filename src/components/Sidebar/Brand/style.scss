@@ -1,0 +1,15 @@
+.searchbox {
+    &__btn {
+        position: absolute;
+        background-color: unset;
+        padding: 5px;
+        font-size: 1rem;
+        border: none;
+    }
+
+    &__input {
+        width: 100%;
+        padding-left: 25px;
+        margin: 5px 0px
+    }
+}

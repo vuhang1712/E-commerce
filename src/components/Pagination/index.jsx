@@ -5,12 +5,14 @@ import React, { useContext } from "react";
 function Pagination() {
   const [state, dispatch] = useContext(Context);
 
-  const pageCount = state.totalCount;
+  const pageCount = Math.ceil(state.totalCount/state.limit);
   const page = state.page;
   const left = page - 3;
   const right = page + 3;
 
   const getPages = () => {
+    if (pageCount <= 7) return [...Array(pageCount + 1).keys()].slice(1);
+
     const pages = [];
     for (let i = 1; i <= pageCount; i++) {
       if (i >= left && (i <= right || i <= 7)) {

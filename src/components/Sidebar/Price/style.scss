@@ -1,3 +1,5 @@
+@import "../../../assets/styles/_variables.scss";
+
 .input-price {
   width: 45px;
   margin-right: 5px;
@@ -14,6 +16,11 @@
 
 .link-price a {
   text-decoration: none;
+  color: $title-color;
+
+  &:hover {
+    color: $rating-color;
+  }
 }
 
 span {

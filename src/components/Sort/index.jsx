@@ -26,14 +26,17 @@ function Sort() {
   }
 
   return (
-    <form class="form-sort">
-      <select
-        class="form-select"
-        onChange={(e) => handleChange(e.target.value)}
-      >
-        {selectItem}
-      </select>
-    </form>
+    <section>
+      <div className="results">{parseInt(state.totalCount).toLocaleString()} results found</div>
+      <form className="form-sort">
+        <select
+          className="form-select"
+          onChange={(e) => handleChange(e.target.value)}
+        >
+          {selectItem}
+        </select>
+      </form>
+    </section>
   );
 }
 

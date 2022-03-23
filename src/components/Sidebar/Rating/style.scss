@@ -1,6 +1,11 @@
 @import "../../../assets/styles/_variables.scss";
 
-.rating i {
-  color: $rating-color;
-  font-size: 0.8rem;
+.rating {
+  i {
+    color: $rating-color;
+    font-size: 0.8rem;
+  }
+  .btn {
+    padding: 5px 0px;
+  }
 }
