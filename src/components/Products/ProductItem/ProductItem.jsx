@@ -1,6 +1,7 @@
 import "./style.scss";
 import Rating from "../../Rating/index";
 import FormatMoney from "../../../utils/utils";
+import React from "react";
 
 function ProductItem(props) {
   return (

@@ -1,3 +1,5 @@
+import React from 'react';
+
 function Rating(rating) {
   return [...Array(5)].map((_, index) =>
     index < rating ? (

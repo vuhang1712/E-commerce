@@ -1,6 +1,6 @@
 import "./style.scss";
 import Context from "../../store/Context";
-import { useContext } from "react";
+import React, { useContext } from "react";
 
 function Sort() {
   const [state, dispatch] = useContext(Context);

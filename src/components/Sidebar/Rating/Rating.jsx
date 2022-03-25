@@ -1,7 +1,7 @@
 import "./style.scss";
 import Rating from "../../Rating/index";
 import Context from "../../../store/Context";
-import { useContext } from "react";
+import React, { useContext } from "react";
 
 function FilterByRating() {
   const [state, dispatch] = useContext(Context);

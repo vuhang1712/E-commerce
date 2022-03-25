@@ -98,6 +98,12 @@ function reducer(state, action) {
         },
       };
 
+    case "CLEAR_ALL_FILTERS":
+      return {
+        ...state,
+        filterApplied: action.payload.filterApplied,
+      };
+
     default:
       throw new Error();
   }

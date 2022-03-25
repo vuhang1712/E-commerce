@@ -1,7 +1,7 @@
 import "./style.scss";
 import logo from "../../assets/images/logo.png";
 import Context from "../../store/Context";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 function Header() {

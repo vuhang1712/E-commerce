@@ -1,6 +1,6 @@
 import "./style.scss";
 import Context from "../../../store/Context";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 
 const priceRange = {
   "$0 - 50": {
