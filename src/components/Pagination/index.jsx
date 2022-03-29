@@ -1,9 +1,11 @@
 import "./style.scss";
-import Context from "../../store/Context";
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPagination } from "../../store/actions";
 
 function Pagination() {
-  const [state, dispatch] = useContext(Context);
+  const state = useSelector(state => state.productReducer);
+  const dispatch = useDispatch();
 
   const pageCount = Math.ceil(state.totalCount/state.limit);
   const page = state.page;
@@ -29,7 +31,7 @@ function Pagination() {
           <li className="page-item">
             <button
               className="btn btn-link"
-              onClick={() => dispatch({ type: "PAGINATE", payload: {page: page - 1} })}
+              onClick={() => dispatch(fetchPagination(page - 1))}
               disabled={page === 1}
             >
               <i className="fa fa-angle-left fa-2x fw-light p-2"></i>
@@ -40,7 +42,7 @@ function Pagination() {
             <li key={index} className="page-item">
               <button
                 className={page === item ? "btn active" : "btn btn-link"}
-                onClick={() => dispatch({ type: "PAGINATE", payload: {page: item} })}
+                onClick={() => dispatch(fetchPagination(item))}
               >
                 {item}
               </button>
@@ -49,7 +51,7 @@ function Pagination() {
           <li className="page-item">
             <button
               className="btn btn-link"
-              onClick={() => dispatch({ type: "PAGINATE", payload: {page: page + 1} })}
+              onClick={() => dispatch(fetchPagination(page + 1))}
               disabled={page === pageCount}
             >
               Next page

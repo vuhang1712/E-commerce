@@ -1,3 +1,5 @@
+import { combineReducers } from "redux";
+
 const initState = {
   products: [],
   brands: [],
@@ -11,7 +13,7 @@ const initState = {
   },
 };
 
-function reducer(state, action) {
+function productReducer(state = initState, action) {
   switch (action.type) {
     case "FETCH_INIT":
       return {
@@ -27,13 +29,19 @@ function reducer(state, action) {
         totalCount: action.payload.headers["x-total-count"],
       };
 
-    case "PAGINATE":
+    case "FETCH_FAILURE":
+      return {
+        ...state,
+        isLoading: false,
+      };
+
+    case "FETCH_PAGINATION":
       return {
         ...state,
         page: action.payload.page,
       };
 
-    case "CATEGORY":
+    case "FETCH_CATEGORY":
       return {
         ...state,
         filterApplied: {
@@ -42,7 +50,7 @@ function reducer(state, action) {
         },
       };
 
-    case "TYPE":
+    case "FETCH_TYPE":
       return {
         ...state,
         filterApplied: {
@@ -51,7 +59,7 @@ function reducer(state, action) {
         },
       };
 
-    case "BRAND":
+    case "FETCH_BRAND":
       return {
         ...state,
         filterApplied: {
@@ -60,7 +68,7 @@ function reducer(state, action) {
         },
       };
 
-    case "SEARCH":
+    case "SEARCH_PRODUCTS":
       return {
         ...state,
         filterApplied: {
@@ -69,7 +77,7 @@ function reducer(state, action) {
         },
       };
 
-    case "SORT":
+    case "SORT_PRODUCTS":
       return {
         ...state,
         filterApplied: {
@@ -79,7 +87,7 @@ function reducer(state, action) {
         },
       };
 
-    case "RATING":
+    case "FETCH_RATING":
       return {
         ...state,
         filterApplied: {
@@ -88,7 +96,7 @@ function reducer(state, action) {
         },
       };
 
-    case "PRICE":
+    case "FETCH_PRICE":
       return {
         ...state,
         filterApplied: {
@@ -105,9 +113,12 @@ function reducer(state, action) {
       };
 
     default:
-      throw new Error();
+      return state;
   }
 }
 
-export { initState };
-export default reducer;
+const rootReducer = combineReducers({
+  productReducer
+});
+
+export default rootReducer;

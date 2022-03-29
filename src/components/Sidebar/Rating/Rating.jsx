@@ -1,18 +1,17 @@
 import "./style.scss";
 import Rating from "../../Rating/index";
-import Context from "../../../store/Context";
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { fetchRating } from "../../../store/actions";
 
 function FilterByRating() {
-  const [state, dispatch] = useContext(Context);
+  const dispatch = useDispatch();
 
   const ratingItem = [...Array(5)].map((_, index) => (
     <li key={index}>
       <button
         className="btn"
-        onClick={() =>
-          dispatch({ type: "RATING", payload: { rating: 5 - index } })
-        }
+        onClick={() => dispatch(fetchRating(5 - index))}
       >
         {Rating(5 - index)}
       </button>
