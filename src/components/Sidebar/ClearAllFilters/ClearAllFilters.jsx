@@ -1,19 +1,16 @@
 import "./style.scss";
-import Context from "../../../store/Context";
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { clearAllFilters } from "../../../store/actions";
 
 function ClearAllFilters() {
-  const [state, dispatch] = useContext(Context);
-
-  function clearAllFilters() {
-    dispatch({
-      type: "CLEAR_ALL_FILTERS",
-      payload: { filterApplied: { type: [], brand: []} },
-    });
-  }
+  const dispatch = useDispatch();
 
   return (
-    <button className="btn btn-primary" onClick={clearAllFilters}>
+    <button
+      className="btn btn-primary"
+      onClick={() => dispatch(clearAllFilters({ type: [], brand: [] }))}
+    >
       Clear All Filters
     </button>
   );

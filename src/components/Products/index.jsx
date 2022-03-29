@@ -1,18 +1,20 @@
 import "./style.scss";
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import { PRODUCT_API_URL } from "../../const/const.js";
 import axios from "axios";
 import Sort from "../Sort/index";
 import Pagination from "../Pagination/index";
 import ProductItem from "./ProductItem/ProductItem";
-import Context from "../../store/Context";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchFailure, fetchInit, fetchSuccess } from "../../store/actions";
 
 function Product() {
-  const [state, dispatch] = useContext(Context);
+  const state = useSelector(state => state.productReducer);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
-      dispatch({ type: "FETCH_INIT" });
+      dispatch(fetchInit());
       try {
         const result = await axios(PRODUCT_API_URL, {
           params: {
@@ -29,9 +31,9 @@ function Product() {
             price_lte: state.filterApplied.maxPrice || Infinity,
           },
         });
-        dispatch({ type: "FETCH_SUCCESS", payload: result });
+        dispatch(fetchSuccess(result));
       } catch (error) {
-        dispatch({ type: "FETCH_FAILURE" });
+        dispatch(fetchFailure);
       }
     };
     fetchData();

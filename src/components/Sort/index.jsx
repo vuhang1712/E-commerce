@@ -1,9 +1,11 @@
 import "./style.scss";
-import Context from "../../store/Context";
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { sortProducts } from "../../store/actions";
 
 function Sort() {
-  const [state, dispatch] = useContext(Context);
+  const totalCount = useSelector(state => state.productReducer.totalCount);
+  const dispatch = useDispatch();
   const options = ["Featured", "Price asc", "Price desc"];
 
   const selectItem = options.map((option, index) => (
@@ -19,15 +21,12 @@ function Sort() {
   };
 
   function handleChange(value) {
-    dispatch({
-      type: "SORT",
-      payload: { sort: result[value].sort, order: result[value].order },
-    });
+    dispatch(sortProducts(result[value].sort, result[value].order))
   }
 
   return (
     <section>
-      <div className="results">{parseInt(state.totalCount).toLocaleString()} results found</div>
+      <div className="results">{parseInt(totalCount).toLocaleString()} results found</div>
       <form className="form-sort">
         <select
           className="form-select"

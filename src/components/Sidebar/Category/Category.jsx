@@ -1,6 +1,7 @@
 import "./style.scss";
-import Context from "../../../store/Context";
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch } from 'react-redux';
+import { fetchCategory } from "../../../store/actions";
 
 function Category() {
   const categories = [
@@ -65,14 +66,11 @@ function Category() {
     },
   ];
 
-  const [_, dispatch] = useContext(Context);
+  const dispatch = useDispatch();
 
   function handleClickCategory(event) {
     event.preventDefault();
-    dispatch({
-      type: "CATEGORY",
-      payload: { category: event.target.innerText },
-    });
+    dispatch(fetchCategory(event.target.innerText));
   }
 
   const subCategories = (subCategories) => {
