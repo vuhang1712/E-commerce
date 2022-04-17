@@ -1,18 +1,14 @@
 import "./style.scss";
 import logo from "../../assets/images/logo.png";
-import Context from "../../store/Context";
-import React, { useContext } from "react";
+import React from "react";
 import { useDebouncedCallback } from "use-debounce";
+import { useDispatch } from "react-redux";
+import { searchProducts } from "../../store/productSlice";
 
 function Header() {
-  const [state, dispatch] = useContext(Context);
+  const dispatch = useDispatch();
   const debounced = useDebouncedCallback((value) => {
-    dispatch({
-      type: "SEARCH",
-      payload: {
-        search: value.trim(),
-      },
-    });
+    dispatch(searchProducts(value.trim()));
   }, 300);
 
   return (

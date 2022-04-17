@@ -1,9 +1,11 @@
 import "./style.scss";
-import Context from "../../../store/Context";
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteType, fetchType } from "../../../store/productSlice";
 
 function FilterByType() {
-  const [state, dispatch] = useContext(Context);
+  const dispatch = useDispatch();
+
   const types = [
     "Trend cases",
     "Ult protection cases",
@@ -21,18 +23,8 @@ function FilterByType() {
         value={type}
         onChange={(e) => {
           e.target.checked
-            ? dispatch({
-                type: "TYPE",
-                payload: { type: [...state.filterApplied.type, type] },
-              })
-            : dispatch({
-                type: "TYPE",
-                payload: {
-                  type: state.filterApplied.type.filter(
-                    (item) => item !== type
-                  ),
-                },
-              });
+            ? dispatch(fetchType(type))
+            : dispatch(deleteType(type));
         }}
       />
       <label htmlFor={type}>{type}</label>

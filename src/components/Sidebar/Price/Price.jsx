@@ -1,6 +1,7 @@
 import "./style.scss";
-import Context from "../../../store/Context";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchPrice } from "../../../store/productSlice";
 
 const priceRange = {
   "$0 - 50": {
@@ -53,7 +54,7 @@ const initPriceRange = [
 ];
 
 function FilterByPrice() {
-  const [{ filterApplied }, dispatch] = useContext(Context);
+  const dispatch = useDispatch();
   const [range, setRange] = useState([...initPriceRange]);
   const [inputMin, setInputMin] = useState(0);
   const [inputMax, setInputMax] = useState(0);
@@ -77,42 +78,30 @@ function FilterByPrice() {
   }
 
   function handleChangeMinPrice(value) {
-    filterApplied.minPrice = value;
     setInputMin(value);
   }
 
   function handleChangeMaxPrice(value) {
-    filterApplied.maxPrice = value;
     setInputMax(value);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    handleShowPriceRange(filterApplied.minPrice, filterApplied.maxPrice);
-    dispatch({
-      type: "PRICE",
-      payload: {
-        minPrice: filterApplied.minPrice,
-        maxPrice: filterApplied.maxPrice,
-      },
-    });
+    handleShowPriceRange(inputMin, inputMax);
+    dispatch(fetchPrice({ inputMin, inputMax }));
   }
 
   function handleClickPriceRange(value) {
-    filterApplied.minPrice = priceRange[value].min;
-    filterApplied.maxPrice = priceRange[value].max;
-
-    setInputMin(filterApplied.minPrice);
-    setInputMax(filterApplied.maxPrice);
+    setInputMin(priceRange[value].min);
+    setInputMax(priceRange[value].max);
     setRange([value]);
-    
-    dispatch({
-      type: "PRICE",
-      payload: {
-        minPrice: filterApplied.minPrice,
-        maxPrice: filterApplied.maxPrice,
-      },
-    });
+
+    dispatch(
+      fetchPrice({
+        inputMin: priceRange[value].min,
+        inputMax: priceRange[value].max,
+      })
+    );
   }
 
   const itemPriceRange = range.map((item, index) => (
